@@ -159,7 +159,7 @@ namespace Cookbook.Domain.Exceptions
         public void ThrowIfInvalid()
         {
             if (!_errors.Any()) return;
-            var myNamespace = typeof(MijnOrbisFactory).Namespace + ".";
+            var myNamespace = typeof(CookbookFactory).Namespace + ".";
             var type = typeof(T).FullName.Replace(myNamespace, "").Replace(".", "_");
             if (_errors.Count == 1)
             {
