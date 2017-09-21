@@ -14,6 +14,8 @@ using Microsoft.AspNetCore.Http;
 using System.Security.Principal;
 using Swashbuckle.AspNetCore.Swagger;
 using Cookbook.Api.Infrastructure;
+using System.IO;
+using Cookbook.Api.Infrastructure.Log4net;
 
 namespace Cookbook.Api
 {
@@ -90,13 +92,58 @@ namespace Cookbook.Api
 
         #endregion
 
+        #region Configure
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
-            loggerFactory.AddConsole(Configuration.GetSection("Logging"));
-            loggerFactory.AddDebug();
+            ConfigureLogging(loggerFactory);
+            ConfigureMvc(app);
+            ConfigureSwagger(app);
+            ConfigureSpaRoot(app);
+        }
 
+        #region Custom Configure
+        private void ConfigureLogging(ILoggerFactory loggerFactory)
+        {
+            loggerFactory.AddConsole(Configuration.GetSection("Logging"));
+            loggerFactory.AddLog4Net(Configuration.GetSection("Settings").GetValue<string>("Log4NetConfig"));
+            loggerFactory.AddDebug();
+        }
+
+        private void ConfigureMvc(IApplicationBuilder app)
+        {
+            if (_env.IsDevelopment())
+            {
+                app.UseDeveloperExceptionPage();
+            }
             app.UseMvc();
         }
+
+        private void ConfigureSpaRoot(IApplicationBuilder app)
+        {
+            app.Use(async (context, next) => {
+                await next();
+                if (context.Response.StatusCode == 404 &&
+                   !Path.HasExtension(context.Request.Path.Value) &&
+                   !context.Request.Path.Value.StartsWith("/api/"))
+                {
+                    context.Request.Path = "/index.html";
+                    await next();
+                }
+            });
+            app.UseDefaultFiles();
+            app.UseStaticFiles();
+        }
+
+        private void ConfigureSwagger(IApplicationBuilder app)
+        {
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Mijn Orbis V1");
+            });
+        }
+        #endregion
+        #endregion
     }
 }
