@@ -53,7 +53,7 @@
     <Compile Include="CookbookFactory.cs" />
     <Compile Include="Entities\Ingredient.cs" />
     <Compile Include="Entities\Product.cs" />
-    <Compile Include="Entities\Receipe.cs" />
+    <Compile Include="Entities\Recipe.cs" />
     <Compile Include="Entities\Step.cs" />
     <Compile Include="Entities\Store.cs" />
     <Compile Include="Exceptions\EntityValidator.cs" />

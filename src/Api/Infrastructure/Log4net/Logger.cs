@@ -80,4 +80,5 @@ namespace Cookbook.Api.Infrastructure.Log4net
                 }
             }
         }
+    }
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Cookbook.Domain.Entities
 {
-    class Receipe
+    class Recipe
     {
     }
 }

@@ -23,8 +23,8 @@ namespace Cookbook.Api.Infrastructure
                 base.OnException(context);
                 return;
             }
-            ErrorMessage result = null;
 
+            ErrorMessage result = null;
             if (context.Exception is ApiException apiException)
             {
                 result = MapToMessage(apiException);
