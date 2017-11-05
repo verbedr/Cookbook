@@ -53,6 +53,11 @@
     <Compile Include="..\..\VersionInfo.cs">
       <Link>Properties\VersionInfo.cs</Link>
     </Compile>
+    <Compile Include="Configurations\IngredientConfiguration.cs" />
+    <Compile Include="Configurations\ProductConfiguration.cs" />
+    <Compile Include="Configurations\StoreConfiguration.cs" />
+    <Compile Include="Configurations\RecipeConfiguration.cs" />
+    <Compile Include="Configurations\HowToStepConfiguration.cs" />
     <Compile Include="DataSet.cs" />
     <Compile Include="CookbookDbContext.cs" />
     <Compile Include="Migrations\Configuration.cs" />
@@ -66,9 +71,7 @@
     <None Include="packages.config" />
     <None Include="README.md" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Configurations\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\Common\Common.csproj">
       <Project>{b2fb1d6d-c6a7-48b5-8568-d4f1f27b89a3}</Project>

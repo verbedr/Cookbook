@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
-namespace Cookbook.Domain.Entities
+namespace Cookbook.Api.Models
 {
-    class Step
+    public class HalLink
     {
     }
 }

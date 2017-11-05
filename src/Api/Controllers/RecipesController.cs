@@ -1,30 +1,39 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Halcyon.HAL;
 using Common.ValueObjects;
-using Cookbook.Api.Infrastructure;
+using Cookbook.Contracts.Services;
+using Cookbook.Contracts.Requests.RecipeRequests;
+using Cookbook.Api.Models.RecipeModels;
 
 namespace Api.Controllers
 {
     [Produces("application/json")]
-    [Route("api/recipes")]
+    [Route(RootUri)]
     public class RecipesController : Controller
     {
+        public const string RootUri = "/api/recipes";
+        IRecipeService _service;
+
+        public RecipesController(IRecipeService service)
+        {
+            _service = service ?? throw new ArgumentNullException(nameof(service));
+        }
+
         // GET api/values
         [HttpGet]
-        [ProducesResponseType(typeof(object), 200)]
+        [ProducesResponseType(typeof(OverviewModel), 200)]
         [ProducesResponseType(typeof(ErrorMessage), 400)]
-        public IActionResult Get(bool includeDetails)
+        public async Task<IActionResult> Overview(OverviewRequest request)
         {
-            var items = new string[] { "value1", "value2" }.Select(x => new HALResponse(x)
-                                .AddLinks(new Link("self", $"{Request.Scheme}://{Request.Host}/api/recipe/{{Id}}"))).ToList();
+            var result = await _service.Overview(request);
             return Ok(new HALResponse(new { })
-                            .AddLinks(new Link("self", $"{Request.Scheme}://{Request.Host}/api/recipes"))
-                            .AddLinks(new Link("home", $"{Request.Scheme}://{Request.Host}/"))
-                            .AddEmbeddedCollection("item", items));
+                .AddLinks(new Link("self", $"{Request.Scheme}://{Request.Host}{RootUri}"))
+                .AddLinks(new Link("home", $"{Request.Scheme}://{Request.Host}/"))
+                .AddEmbeddedCollection("item", result.Items.Select(x => new HALResponse(x)
+                    .AddLinks(new Link("self", $"{Request.Scheme}://{Request.Host}{RootUri}/{{Id}}")))));
         }
 
         // GET api/values/5

@@ -1,12 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Common.Domain;
 
 namespace Cookbook.Domain.Entities
 {
-    class Store
+    public class Store : Entity
     {
+        protected Store() { }
+
+        public Store(string name)
+        {
+            Name = name;
+        }
+
+        public string Name { get; private set; }
     }
 }

@@ -6,6 +6,7 @@ using Castle.Windsor;
 using Common.Services;
 using Cookbook.Contracts.Services;
 using Cookbook.Services;
+using System;
 
 namespace Cookbook.Castle
 {
@@ -32,7 +33,11 @@ namespace Cookbook.Castle
                              .LifestyleSingleton(),
                     Component.For<IMapper>().UsingFactory<MapperConfiguration, IMapper>(f => f.CreateMapper()).LifestyleTransient(),
 
-                    Component.For<IMetadataService>().ImplementedBy<MetadataService>().LifestyleSingleton()
+                    Types.FromAssembly(typeof(Contracts.Properties.AssemblyMarker).Assembly)
+                        .Where(t => t.IsInterface && t.Name.EndsWith("Service"))
+                        .LifestyleSingleton()
+                        .Configure(r => r.UsingFactoryMethod((k, m, c) =>
+                            Activator.CreateInstance(ServiceBuilder.CompileResultType(c.RequestedType), k.Resolve<IRequestHandlerMediator>())))
                 );
 
         }

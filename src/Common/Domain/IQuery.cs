@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Linq;
 using System.Threading.Tasks;
 
 namespace Common.Domain
@@ -10,6 +7,6 @@ namespace Common.Domain
         where TFilter : class
         where TProjection : class
     {
-        Task<TProjection> ExecuteAsync(TFilter request);
+        Task<IQueryable<TProjection>> ExecuteAsync(TFilter request);
     }
 }

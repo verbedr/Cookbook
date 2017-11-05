@@ -46,16 +46,24 @@
     <Compile Include="..\..\VersionInfo.cs">
       <Link>Properties\VersionInfo.cs</Link>
     </Compile>
+    <Compile Include="Properties\AssemblyMarker.cs" />
+    <Compile Include="PropertyBags\Item.cs" />
     <Compile Include="PropertyBags\Product.cs" />
     <Compile Include="PropertyBags\ProductDefinition.cs" />
     <Compile Include="PropertyBags\ProductSummary.cs" />
+    <Compile Include="PropertyBags\Recipe.cs" />
+    <Compile Include="PropertyBags\RecipeSummary.cs" />
+    <Compile Include="Requests\MetadataRequests\ProductsRequest.cs" />
+    <Compile Include="Requests\RecipeRequests\OverviewRequest.cs" />
+    <Compile Include="Responses\ListResponse.cs" />
+    <Compile Include="Responses\MetadataResponses\ProductsResponse.cs" />
+    <Compile Include="Responses\RecipeResponses\OverviewResponse.cs" />
     <Compile Include="Services\IMetadataService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\IRecipeService.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Messages\" />
-    <Folder Include="Requests\MetadataRequests\" />
-    <Folder Include="Responses\MetadataResponses\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Common\Common.csproj">

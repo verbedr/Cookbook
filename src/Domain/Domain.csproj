@@ -54,7 +54,7 @@
     <Compile Include="Entities\Ingredient.cs" />
     <Compile Include="Entities\Product.cs" />
     <Compile Include="Entities\Recipe.cs" />
-    <Compile Include="Entities\Step.cs" />
+    <Compile Include="Entities\HowToStep.cs" />
     <Compile Include="Entities\Store.cs" />
     <Compile Include="Exceptions\EntityValidator.cs" />
     <Compile Include="Exceptions\CookbookException.cs" />

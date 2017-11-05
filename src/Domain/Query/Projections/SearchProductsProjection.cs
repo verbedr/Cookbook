@@ -8,5 +8,6 @@ namespace Cookbook.Domain.Query.Projections
 {
     public class SearchProductsProjection
     {
+        public string Name { get; internal set; }
     }
 }

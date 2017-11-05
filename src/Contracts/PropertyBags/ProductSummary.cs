@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Cookbook.Contracts.PropertyBags
 {
-    public class ProductSummary
+    public class ProductSummary : Item
     {
     }
 }
