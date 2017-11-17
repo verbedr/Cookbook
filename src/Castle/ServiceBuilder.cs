@@ -2,6 +2,7 @@
 using System;
 using System.Reflection;
 using System.Reflection.Emit;
+using System.Threading.Tasks;
 
 namespace Cookbook.Castle
 {
@@ -9,8 +10,9 @@ namespace Cookbook.Castle
     {
         static Type mediatorType = typeof(IRequestHandlerMediator);
         static MethodInfo exectueGeneric = mediatorType.GetMethod("ExecuteAsync");
-        static AssemblyBuilder assembly = AppDomain.CurrentDomain
-            .DefineDynamicAssembly(new AssemblyName(typeof(ServiceBuilder).FullName), AssemblyBuilderAccess.Run);
+        static AssemblyBuilder builder = AssemblyBuilder
+                .DefineDynamicAssembly(new AssemblyName(typeof(ServiceBuilder).FullName), AssemblyBuilderAccess.Run);
+        static ModuleBuilder module = builder.DefineDynamicModule("MainModule");
 
         public static Type CompileResultType(Type iservice)
         {
@@ -33,7 +35,6 @@ namespace Cookbook.Castle
         private static TypeBuilder CreateType(Type iservice)
         {
             var typeSignature = iservice.Namespace + "." + iservice.Name.Remove(0, 1);
-            var module = assembly.DefineDynamicModule("MainModule");
             var returnValue = module.DefineType(typeSignature,
                     TypeAttributes.Public |
                     TypeAttributes.Class |
@@ -66,7 +67,12 @@ namespace Cookbook.Castle
             methodBody.Emit(OpCodes.Ldarg_0);
             methodBody.Emit(OpCodes.Ldfld, mediator);
             methodBody.Emit(OpCodes.Ldarg_1);
-            var execute = exectueGeneric.MakeGenericMethod(new[] { parameterInfo.ParameterType, returnType });
+            var execute = exectueGeneric.MakeGenericMethod(new[] 
+            {
+                parameterInfo.ParameterType,
+                returnType.IsGenericType && returnType.GetGenericTypeDefinition() == typeof(Task<>)
+                    ? returnType.GenericTypeArguments[0]
+                    : returnType});
             methodBody.Emit(OpCodes.Callvirt, execute);
             methodBody.Emit(OpCodes.Ret);
             return method;

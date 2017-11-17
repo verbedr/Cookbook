@@ -10,9 +10,9 @@ using Common.Repository;
 
 namespace Cookbook.Services.Handlers.RecipeHandlers
 {
-    internal class OverviewHandler : QueryRequestHandler<OverviewRequest, OverviewResponse>
+    public class OverviewHandler : QueryRequestHandler<OverviewRequest, OverviewResponse>
     {
-        protected OverviewHandler(IUnitOfWork context) : base(context)
+        public OverviewHandler(IUnitOfWork context) : base(context)
         {
         }
 

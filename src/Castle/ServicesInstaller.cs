@@ -12,13 +12,12 @@ namespace Cookbook.Castle
 {
     public class ServicesInstaller : IWindsorInstaller
     {
-
         public void Install(IWindsorContainer container, IConfigurationStore store)
         {
-            var thisAssembly = typeof(Services.Properties.AssemblyMarker).Assembly;
+            var serviceAssembly = typeof(Services.Properties.AssemblyMarker).Assembly;
             container
                 .Register(
-                    Classes.FromAssembly(thisAssembly)
+                    Classes.FromAssembly(serviceAssembly)
                            .IncludeNonPublicTypes()
                            .BasedOn(typeof(IRequestHandler<,>))
                            .WithServiceFromInterface()
@@ -29,7 +28,7 @@ namespace Cookbook.Castle
                              .LifestyleSingleton(),
 
                     Component.For<MapperConfiguration>()
-                             .Instance(new MapperConfiguration(cfg => cfg.AddProfiles(thisAssembly)))
+                             .Instance(new MapperConfiguration(cfg => cfg.AddProfiles(serviceAssembly)))
                              .LifestyleSingleton(),
                     Component.For<IMapper>().UsingFactory<MapperConfiguration, IMapper>(f => f.CreateMapper()).LifestyleTransient(),
 

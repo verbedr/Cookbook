@@ -18,7 +18,7 @@ namespace Cookbook.Services.Handlers.MetadataHandlers
         private readonly IMapper _mapper;
         private readonly IQuery<SearchProductsFilter, SearchProductsProjection> _query;
 
-        protected ProductsHandler(IUnitOfWork context, IMapper mapper, IQuery<SearchProductsFilter, SearchProductsProjection> query) : base(context)
+        public ProductsHandler(IUnitOfWork context, IMapper mapper, IQuery<SearchProductsFilter, SearchProductsProjection> query) : base(context)
         {
             _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
             _query = query ?? throw new ArgumentNullException(nameof(query));
