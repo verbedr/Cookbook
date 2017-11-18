@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp2.0</TargetFramework>
+    <TargetFramework>net47</TargetFramework>
     <AssemblyName>Cookbook.Api</AssemblyName>
     <RootNamespace>Cookbook.Api</RootNamespace>
     <UserSecretsId>82efa46c-8cad-4bed-9fe8-d1d31ee4ed31</UserSecretsId>

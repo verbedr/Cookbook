@@ -1,10 +1,10 @@
 ﻿using Common.ValueObjects;
+using Cookbook.Api.Models.Metadata;
 using Cookbook.Contracts.Requests.MetadataRequests;
 using Cookbook.Contracts.Services;
 using Halcyon.HAL;
 using Microsoft.AspNetCore.Mvc;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -22,9 +22,9 @@ namespace Cookbook.Api.Controllers
         }
 
         [HttpGet("products")]
-        [ProducesResponseType(typeof(object), 200)]
+        [ProducesResponseType(typeof(ProductsModel), 200)]
         [ProducesResponseType(typeof(ErrorMessage), 400)]
-        public async Task<IActionResult> Overview(ProductsRequest request)
+        public async Task<IActionResult> Products(ProductsRequest request)
         {
             var result = await _service.Products(request);
             return Ok(new HALResponse(new { })
