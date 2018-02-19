@@ -3,10 +3,10 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Halcyon.HAL;
-using Common.ValueObjects;
 using Cookbook.Contracts.Services;
 using Cookbook.Contracts.Requests.RecipeRequests;
 using Cookbook.Api.Models.RecipeModels;
+using Cookbook.Contracts.PropertyBags;
 
 namespace Api.Controllers
 {
@@ -25,7 +25,6 @@ namespace Api.Controllers
         // GET api/values
         [HttpGet]
         [ProducesResponseType(typeof(OverviewModel), 200)]
-        [ProducesResponseType(typeof(ErrorMessage), 400)]
         public async Task<IActionResult> Overview(OverviewRequest request)
         {
             var result = await _service.Overview(request);
@@ -36,11 +35,15 @@ namespace Api.Controllers
                     .AddLinks(new Link("self", $"{Request.Scheme}://{Request.Host}{RootUri}/{{Id}}")))));
         }
 
-        // GET api/values/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        [ProducesResponseType(typeof(RecipeSummary), 200)]
+        public async Task<IActionResult> Get(LoadRequest request)
         {
-            return "value";
+            var result = await _service.Load(request);
+            return Ok(new HALResponse(result.Item)
+                .AddLinks(new Link("self", $"{Request.Scheme}://{Request.Host}{RootUri}/{request.Id}"))
+                .AddLinks(new Link("items", $"{Request.Scheme}://{Request.Host}{RootUri}"))
+                .AddLinks(new Link("home", $"{Request.Scheme}://{Request.Host}/")));
         }
 
         // POST api/values

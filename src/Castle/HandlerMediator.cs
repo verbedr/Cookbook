@@ -8,17 +8,17 @@ using Common.Services;
 
 namespace Cookbook.Castle
 {
-    internal class RequestHandlerMediator : IRequestHandlerMediator
+    internal class HandlerMediator : IHandlerMediator
     {
         private const string InfoMessage = "Handled request for {0} ({1} ms).";
         private const string WarnMessage = "Request for {0} caused a business exception ({1} ms).";
         private const string ErrorMessage = "Request for {0} caused an exception ({1} ms).";
 
         private readonly IKernel _container;
-        private readonly IRequestHandlerFactory _handlerFactory;
+        private readonly Common.Services.IHandlerFactory _handlerFactory;
         public ILogger Log { get; set; } = NullLogger.Instance;
 
-        public RequestHandlerMediator(IKernel container, IRequestHandlerFactory handlerFactory)
+        public HandlerMediator(IKernel container, Common.Services.IHandlerFactory handlerFactory)
         {
             _container = container ?? throw new ArgumentNullException(nameof(container));
             _handlerFactory = handlerFactory ?? throw new ArgumentNullException(nameof(handlerFactory));
@@ -26,9 +26,9 @@ namespace Cookbook.Castle
 
         public async Task<TResponse> ExecuteAsync<TRequest, TResponse>(TRequest request) where TRequest : class where TResponse : class
         {
-            var requestType = typeof(TRequest).FullName.Replace("Softwel.MijnOrbis.Contracts.Requests.", "");
+            var requestType = typeof(TRequest).FullName.Replace("Cookbook.Contracts.Requests.", "");
             var stopwatch = new Stopwatch();
-            IRequestHandler<TRequest, TResponse> handler = null;
+            IHandler<TRequest, TResponse> handler = null;
 
             using (_container.BeginScope())
             {

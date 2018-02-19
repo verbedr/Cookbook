@@ -13,7 +13,7 @@ using Cookbook.Contracts.PropertyBags;
 
 namespace Cookbook.Services.Handlers.MetadataHandlers
 {
-    internal class ProductsHandler : QueryRequestHandler<ProductsRequest, ProductsResponse>
+    internal class ProductsHandler : QueryHandler<ProductsRequest, ProductsResponse>
     {
         private readonly IMapper _mapper;
         private readonly IQuery<SearchProductsFilter, SearchProductsProjection> _query;

@@ -2,7 +2,7 @@
 
 namespace Common.Services
 {
-    public interface IRequestHandlerMediator
+    public interface IHandlerMediator
     {
         Task<TResponse> ExecuteAsync<TRequest, TResponse>(TRequest request)
             where TRequest : class

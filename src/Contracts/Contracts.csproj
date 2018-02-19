@@ -54,10 +54,14 @@
     <Compile Include="PropertyBags\ProductSummary.cs" />
     <Compile Include="PropertyBags\Recipe.cs" />
     <Compile Include="PropertyBags\RecipeSummary.cs" />
+    <Compile Include="Requests\ItemRequest.cs" />
     <Compile Include="Requests\MetadataRequests\ProductsRequest.cs" />
+    <Compile Include="Requests\RecipeRequests\LoadRequest.cs" />
     <Compile Include="Requests\RecipeRequests\OverviewRequest.cs" />
+    <Compile Include="Responses\ItemResponse.cs" />
     <Compile Include="Responses\ListResponse.cs" />
     <Compile Include="Responses\MetadataResponses\ProductsResponse.cs" />
+    <Compile Include="Responses\RecipeResponses\LoadResponse.cs" />
     <Compile Include="Responses\RecipeResponses\OverviewResponse.cs" />
     <Compile Include="Services\IMetadataService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

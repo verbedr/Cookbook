@@ -13,6 +13,8 @@ using Swashbuckle.AspNetCore.Swagger;
 using Cookbook.Api.Infrastructure;
 using System.IO;
 using Cookbook.Api.Infrastructure.Log4net;
+using Microsoft.AspNetCore.Mvc;
+using Common.ValueObjects;
 
 namespace Cookbook.Api
 {
@@ -61,6 +63,7 @@ namespace Cookbook.Api
                 .AddMvc(o =>
                 {
                     o.Filters.Add(new ApiExceptionFilterAttribute(!_env.IsDevelopment()));
+                    o.Filters.Add(new ProducesResponseTypeAttribute(typeof(ErrorMessage), 400));
                 })
                 .AddJsonOptions(o =>
                 {

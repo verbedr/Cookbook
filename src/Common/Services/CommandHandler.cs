@@ -4,7 +4,7 @@ using Common.Repository;
 
 namespace Common.Services
 {
-    public abstract class CommandRequestHandler<TRequest, TResponse> : IRequestHandler<TRequest, TResponse>
+    public abstract class CommandHandler<TRequest, TResponse> : IHandler<TRequest, TResponse>
         where TRequest : class
         where TResponse : class
     {
@@ -12,7 +12,7 @@ namespace Common.Services
 
         protected IUnitOfWork Context { get { return _context; } }
 
-        protected CommandRequestHandler(IUnitOfWork context)
+        protected CommandHandler(IUnitOfWork context)
         {
             if (context == null) throw new ArgumentNullException(nameof(context));
             _context = context;

@@ -19,12 +19,12 @@ namespace Cookbook.Castle
                 .Register(
                     Classes.FromAssembly(serviceAssembly)
                            .IncludeNonPublicTypes()
-                           .BasedOn(typeof(IRequestHandler<,>))
+                           .BasedOn(typeof(IHandler<,>))
                            .WithServiceFromInterface()
                            .LifestyleScoped(),
-                    Component.For<IRequestHandlerFactory>().AsFactory().LifestyleSingleton(),
-                    Component.For<IRequestHandlerMediator>()
-                             .ImplementedBy<RequestHandlerMediator>()
+                    Component.For<IHandlerFactory>().AsFactory().LifestyleSingleton(),
+                    Component.For<IHandlerMediator>()
+                             .ImplementedBy<HandlerMediator>()
                              .LifestyleSingleton(),
 
                     Component.For<MapperConfiguration>()
@@ -36,7 +36,7 @@ namespace Cookbook.Castle
                         .Where(t => t.IsInterface && t.Name.EndsWith("Service"))
                         .LifestyleSingleton()
                         .Configure(r => r.UsingFactoryMethod((k, m, c) =>
-                            Activator.CreateInstance(ServiceBuilder.CompileResultType(c.RequestedType), k.Resolve<IRequestHandlerMediator>())))
+                            Activator.CreateInstance(ServiceBuilder.CompileResultType(c.RequestedType), k.Resolve<IHandlerMediator>())))
                 );
 
         }

@@ -1,16 +1,16 @@
 ﻿using Common.Services;
 using Cookbook.Contracts.Requests.RecipeRequests;
-using Cookbook.Contracts.Requests.RecipeResponses;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Common.Repository;
+using Cookbook.Contracts.Responses.RecipeResponses;
 
 namespace Cookbook.Services.Handlers.RecipeHandlers
 {
-    public class OverviewHandler : QueryRequestHandler<OverviewRequest, OverviewResponse>
+    public class OverviewHandler : QueryHandler<OverviewRequest, OverviewResponse>
     {
         public OverviewHandler(IUnitOfWork context) : base(context)
         {

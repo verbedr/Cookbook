@@ -8,7 +8,7 @@ namespace Cookbook.Castle
 {
     public static class ServiceBuilder
     {
-        static Type mediatorType = typeof(IRequestHandlerMediator);
+        static Type mediatorType = typeof(IHandlerMediator);
         static MethodInfo exectueGeneric = mediatorType.GetMethod("ExecuteAsync");
         static AssemblyBuilder builder = AssemblyBuilder
                 .DefineDynamicAssembly(new AssemblyName(typeof(ServiceBuilder).FullName), AssemblyBuilderAccess.Run);

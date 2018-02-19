@@ -23,7 +23,6 @@ namespace Cookbook.Api.Controllers
 
         [HttpGet("products")]
         [ProducesResponseType(typeof(ProductsModel), 200)]
-        [ProducesResponseType(typeof(ErrorMessage), 400)]
         public async Task<IActionResult> Products(ProductsRequest request)
         {
             var result = await _service.Products(request);

@@ -4,13 +4,13 @@ using Common.Repository;
 
 namespace Common.Services
 {
-    public abstract class QueryRequestHandler<TRequest, TResponse> : IRequestHandler<TRequest, TResponse>
+    public abstract class QueryHandler<TRequest, TResponse> : IHandler<TRequest, TResponse>
         where TRequest : class
         where TResponse : class
     {
         private readonly IUnitOfWork _context;
 
-        protected QueryRequestHandler(IUnitOfWork context)
+        protected QueryHandler(IUnitOfWork context)
         {
             if (context == null) throw new ArgumentNullException(nameof(context));
             _context = context;

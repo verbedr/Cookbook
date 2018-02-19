@@ -1,5 +1,5 @@
 ﻿using Cookbook.Contracts.Requests.RecipeRequests;
-using Cookbook.Contracts.Requests.RecipeResponses;
+using Cookbook.Contracts.Responses.RecipeResponses;
 using System.Threading.Tasks;
 
 namespace Cookbook.Contracts.Services
@@ -7,5 +7,6 @@ namespace Cookbook.Contracts.Services
     public interface IRecipeService
     {
         Task<OverviewResponse> Overview(OverviewRequest request);
+        Task<LoadResponse> Load(LoadRequest request);
     }
 }

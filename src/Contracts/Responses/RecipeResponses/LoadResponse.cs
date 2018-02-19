@@ -2,7 +2,7 @@
 
 namespace Cookbook.Contracts.Responses.RecipeResponses
 {
-    public class OverviewResponse : ListResponse<RecipeSummary>
+    public class LoadResponse : ItemResponse<RecipeSummary>
     {
     }
 }

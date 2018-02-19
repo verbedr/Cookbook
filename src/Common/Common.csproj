@@ -57,10 +57,10 @@
     <Compile Include="Repository\IDataSetFactory.cs" />
     <Compile Include="Repository\IUnitOfWork.cs" />
     <Compile Include="Repository\IUnitOfWorkTransaction.cs" />
-    <Compile Include="Services\CommandRequestHandler.cs" />
-    <Compile Include="Services\IRequestHandler.cs" />
-    <Compile Include="Services\IRequestHandlerFactory.cs" />
-    <Compile Include="Services\IRequestHandlerMediator.cs" />
+    <Compile Include="Services\CommandHandler.cs" />
+    <Compile Include="Services\IHandler.cs" />
+    <Compile Include="Services\IHandlerFactory.cs" />
+    <Compile Include="Services\IHandlerMediator.cs" />
     <Compile Include="Services\QueryRequestHandler.cs" />
     <Compile Include="ValueObjects\ErrorMessage.cs" />
   </ItemGroup>
