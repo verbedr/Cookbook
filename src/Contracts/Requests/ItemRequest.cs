@@ -1,9 +1,9 @@
 ﻿namespace Cookbook.Contracts.Requests
 {
-    public class ItemRequest<T>
+    public abstract class ItemRequest<T> : BaseRequest
     {
-        public T Id { get; set; }
+        protected ItemRequest() { }
 
-        public bool IncludeDetails { get; set; }
+        public T Id { get; set; }
     }
 }

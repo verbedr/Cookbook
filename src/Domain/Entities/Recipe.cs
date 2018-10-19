@@ -1,9 +1,7 @@
 ﻿using Common.Domain;
-using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Cookbook.Domain.Entities
 {
@@ -15,14 +13,15 @@ namespace Cookbook.Domain.Entities
 
         public string Name { get; set; }
 
+        public int NumberOfPlates { get; private set; }
+
         #region Ingredients
-        public Ingredient[] Ingredients => _Ingredients.ToArray();
+        public ReadOnlyCollection<Ingredient> Ingredients => _Ingredients.ToList().AsReadOnly();
 
         protected internal virtual ICollection<Ingredient> _Ingredients { get; private set; } = new List<Ingredient>();
         #endregion
 
         public virtual HowToStep Start { get; set; }
-
 
     }
 }

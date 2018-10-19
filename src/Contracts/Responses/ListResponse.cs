@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Cookbook.Contracts.Responses
+﻿namespace Cookbook.Contracts.Responses
 {
-    public class ListResponse<T>
+    public abstract class ListResponse<T>
     {
+        protected ListResponse() { }
+
         public T[] Items { get; set; }
     }
 }

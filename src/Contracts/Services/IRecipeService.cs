@@ -8,5 +8,11 @@ namespace Cookbook.Contracts.Services
     {
         Task<OverviewResponse> Overview(OverviewRequest request);
         Task<LoadResponse> Load(LoadRequest request);
+
+        Task<CreateResponse> Create(CreateRequest request);
+        Task<AddIngredientResponse> AddIngredient(AddIngredientRequest request);
+        Task<RemoveIngredientResponse> RemoveIngredient(RemoveIngredientRequest request);
+
+
     }
 }

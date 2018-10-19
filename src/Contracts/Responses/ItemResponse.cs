@@ -1,7 +1,9 @@
 ﻿namespace Cookbook.Contracts.Responses
 {
-    public class ItemResponse<T>
+    public abstract class ItemResponse<T>
     {
+        protected ItemResponse() { }
+
         public T Item { get; set; }
     }
 }

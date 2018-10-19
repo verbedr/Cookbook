@@ -52,8 +52,11 @@
       <Link>Properties\VersionInfo.cs</Link>
     </Compile>
     <Compile Include="CookbookFactory.cs" />
+    <Compile Include="Entities\Class1.cs" />
+    <Compile Include="Entities\CookingUnit.cs" />
     <Compile Include="Entities\Ingredient.cs" />
     <Compile Include="Entities\Product.cs" />
+    <Compile Include="Entities\ProductAsIngredient.cs" />
     <Compile Include="Entities\Recipe.cs" />
     <Compile Include="Entities\HowToStep.cs" />
     <Compile Include="Entities\Store.cs" />
